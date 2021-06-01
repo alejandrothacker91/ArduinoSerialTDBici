@@ -1,41 +1,38 @@
-/*
-  Rotary Encoder - Polling Example
+/* Encoder Library - Basic Example
+   http://www.pjrc.com/teensy/td_libs_Encoder.html
 
-  The circuit:
-  encoder pin A to Arduino pin 2
-  encoder pin B to Arduino pin 3
-  encoder ground pin to ground (GND)
+   This example code is in the public domain.
 */
 
-#include <MD_REncoder.h>
+#include <Encoder.h>
 
-// set up encoder object
-MD_REncoder R = MD_REncoder(2,3);
+// Change these two numbers to the pins connected to your encoder.
+//   Best Performance: both pins have interrupt capability
+//   Good Performance: only the first pin has interrupt capability
+//   Low Performance:  neither pin has interrupt capability
+Encoder myEnc(3, 2);
+//   avoid using pins with LEDs attached
 
-void setup()
-{
+void setup() {
   Serial.begin(9600);
-  R.begin();
+  Serial.println("Basic Encoder Test:");
 }
 
-void loop()
-{
-  uint8_t dir = R.read();
+long oldPosition  = -999;
 
-  //int fast = R.speed();
-  if (dir) {
-    int fast = R.speed();
-    //delay(1);
+void loop() {
+  long newPosition = myEnc.read();
+  if (newPosition != oldPosition) {
+    oldPosition = newPosition;
+    //Serial.println(newPosition);
 
-
-    Serial.print("direction/");
-    Serial.print(dir, DEC);
+Serial.print("direction/");
+    Serial.print(0, DEC);
 
     Serial.print("/speed/");
-    Serial.print(fast, DEC);
+    Serial.print(newPosition, DEC);
 
     Serial.print('\n');
-  }
 
-  delay(1);
+  } else {}
 }
