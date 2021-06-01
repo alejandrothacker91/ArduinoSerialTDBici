@@ -14,7 +14,7 @@ MD_REncoder R = MD_REncoder(2,3);
 
 void setup()
 {
-  Serial.begin(57600);
+  Serial.begin(115200);
   R.begin();
 }
 
