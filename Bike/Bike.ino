@@ -15,14 +15,15 @@ Encoder myEnc(3, 2);
 
 void setup() {
   Serial.begin(9600);
+  /*
+    Serial.print("direction/");
+    Serial.print(0, DEC);
 
-  Serial.print("direction/");
-  Serial.print(0, DEC);
+    Serial.print("/speed/");
+    Serial.print(0, DEC);
 
-  Serial.print("/speed/");
-  Serial.print(0, DEC);
-
-  Serial.print('\n');
+    Serial.print('\n');
+  */
 }
 
 long oldPosition  = -999;
@@ -33,13 +34,23 @@ void loop() {
     oldPosition = newPosition;
     //Serial.println(newPosition);
 
-    Serial.print("direction/");
+    Serial.print("idle/");
     Serial.print(0, DEC);
 
-    Serial.print("/speed/");
+    Serial.print("/position/");
     Serial.print(newPosition, DEC);
 
     Serial.print('\n');
 
-  } else {}
+  } else {
+    delay(1000);
+    Serial.print("idle/");
+    Serial.print(1, DEC);
+
+    Serial.print("/position/");
+    Serial.print(newPosition, DEC);
+
+    Serial.print('\n');
+
+  }
 }
