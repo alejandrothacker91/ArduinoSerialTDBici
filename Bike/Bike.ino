@@ -15,7 +15,14 @@ Encoder myEnc(3, 2);
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("Basic Encoder Test:");
+
+  Serial.print("direction/");
+  Serial.print(0, DEC);
+
+  Serial.print("/speed/");
+  Serial.print(0, DEC);
+
+  Serial.print('\n');
 }
 
 long oldPosition  = -999;
@@ -26,7 +33,7 @@ void loop() {
     oldPosition = newPosition;
     //Serial.println(newPosition);
 
-Serial.print("direction/");
+    Serial.print("direction/");
     Serial.print(0, DEC);
 
     Serial.print("/speed/");
